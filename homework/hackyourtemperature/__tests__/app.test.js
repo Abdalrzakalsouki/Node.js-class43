@@ -30,4 +30,11 @@ describe("POST /", () => {
     expect(typeof res.text).toBe("string");
     expect(res.text).toMatch("City is not found!");
   });
+
+  it("Pass empty string", async () => {
+    const res = await request.post("/weathe").send();
+    expect(res.status).toBe(404);
+    expect(typeof res.text).toBe("string");
+    expect(res.text).toContain("Error");
+  });
 });
